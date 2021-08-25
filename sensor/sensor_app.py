@@ -3,6 +3,7 @@ from house_info import HouseInfo
 from temperature_info import TemperatureData
 from humidity_info import HumidityData
 from particle_count_info import ParticleData
+from energy_info import EnergyData
 
 from datetime import date, datetime
 from statistics import mean
@@ -68,3 +69,22 @@ concentrations = particle_data.get_data_concentrations(data=recs)
 print(f"\tGood Air Quality Records: {concentrations['good']}")
 print(f"\tModerate Air Quality Records: {concentrations['moderate']}")
 print(f"\tBad Air Quality Records: {concentrations['bad']}")
+
+# Module 6 code here:
+energy_data = EnergyData(data)
+
+recs = energy_data.get_data_by_area(rec_area=test_area)
+print(f"\nHouse Energy sensor records for area: {test_area} = {len(recs)}")
+total_energy = energy_data.calculate_energy_usage(data=recs)
+print(f"\tEnergy Usage: {total_energy:2.2} Watts")
+
+recs = energy_data.get_data_by_date(rec_date=test_date)
+print(f"\nHouse Energy sensor records for date: {test_date.strftime('%m/%d/%y')} = {len(recs)}")
+total_energy = energy_data.calculate_energy_usage(data=recs)
+print(f"\tEnergy Usage: {total_energy:2.2} Watts")
+
+
+
+
+
+
